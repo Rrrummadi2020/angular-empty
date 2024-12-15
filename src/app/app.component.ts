@@ -6,16 +6,18 @@ import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { TypeReactiveFormComponent } from "./type-reactive-form/type-reactive-form.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     imports: [
-        RouterOutlet,
-        AsyncPipe,
-        ReactiveFormsModule,
-        ReactiveFormComponent,
-    ],
+    RouterOutlet,
+    AsyncPipe,
+    ReactiveFormsModule,
+    ReactiveFormComponent,
+    TypeReactiveFormComponent
+],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
