@@ -9,10 +9,9 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './type-reactive-form.component.scss'
 })
 export class TypeReactiveFormComponent {
-  email = new FormControl('abc@gm.com', {nonNullable:true});
+  email = new FormControl(null);
   resetForm() { 
-    this.email.reset(); // if nonNullable is true; on Reset  ,it will have default value provided
-    console.log(this.email.value);
+    this.email.setValue('Rama'); // throws error infer type null so
     
   }
 }
