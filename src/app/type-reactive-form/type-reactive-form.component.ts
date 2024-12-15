@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+} from '@angular/forms';
 interface LoginForm {
     email: FormControl<string>;
     password?: FormControl<string>;
@@ -13,11 +18,15 @@ interface LoginForm {
     styleUrl: './type-reactive-form.component.scss',
 })
 export class TypeReactiveFormComponent {
-    login = new FormGroup<LoginForm>({
-        email: new FormControl('', { nonNullable: true }),
-        password: new FormControl('', { nonNullable: true }),
+    // login = new FormGroup<LoginForm>({
+    //     email: new FormControl('', { nonNullable: true }),
+    //     password: new FormControl('', { nonNullable: true }),
+    // });
+    fb = new FormBuilder();
+
+    login = this.fb.nonNullable.group({
+        email: [''],
+        password: [''],
     });
-  removeContol() { 
-    this.login.removeControl('password')
-  }
+    removeContol() {}
 }
