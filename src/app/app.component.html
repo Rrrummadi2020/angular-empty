@@ -3,3 +3,8 @@
 @if (user$ | async; as user) {
     <p> {{user.title}}</p>
 }
+
+<input type="text" [formControl]="name" placeholder="Enter name"/>
+<button (click)="getName()">Submit</button>
+
+<app-reactive-form></app-reactive-form>
