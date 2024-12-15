@@ -9,7 +9,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './type-reactive-form.component.scss'
 })
 export class TypeReactiveFormComponent {
-  email = new FormControl(null);
+  email = new FormControl('');
   resetForm() { 
     this.email.setValue('Rama'); // throws error infer type null so
     
