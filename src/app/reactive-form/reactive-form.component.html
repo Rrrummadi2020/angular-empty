@@ -11,5 +11,13 @@
         <input type="text" formControlName="village" />
     </div>
     
+    <div formArrayName="aliases">
+        <button (click)="addAliases()">Add aliases</button>
+        @for (item of aliases.controls; track $index;let i=$index ) {
+            <label for="array{{i}}">fom{{i}}</label>
+            <input type="text" [formControlName]="i" id="array{{i}}" />
+        }
+
+    </div>
     <button type="submit">Submit</button>
 </form>

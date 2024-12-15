@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {
+    FormArray,
     FormBuilder,
     FormControl,
     FormGroup,
@@ -22,10 +23,19 @@ export class ReactiveFormComponent {
         address: this.formBuilder.group({
             village: [''],
         }),
+        aliases: this.formBuilder.array([this.formBuilder.control('')]),
     });
+
+    get aliases() {
+        return this.userForm.get('aliases') as FormArray;
+    }
 
     onSubmit() {
         const value = this.userForm.value;
         console.log(value);
+    }
+
+    addAliases() { 
+        this.aliases.push(this.formBuilder.control(''))
     }
 }
