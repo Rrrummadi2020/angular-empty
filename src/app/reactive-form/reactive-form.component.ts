@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
     selector: 'app-reactive-form',
@@ -9,11 +14,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
     styleUrl: './reactive-form.component.scss',
 })
 export class ReactiveFormComponent {
-    userForm = new FormGroup({
-        name: new FormControl(''),
-        age: new FormControl(''),
-        address: new FormGroup({
-            village: new FormControl(''),
+    formBuilder = inject(FormBuilder);
+
+    userForm = this.formBuilder.group({
+        name: [''],
+        age: [''],
+        address: this.formBuilder.group({
+            village: [''],
         }),
     });
 
