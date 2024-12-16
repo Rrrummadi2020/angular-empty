@@ -23,10 +23,13 @@ export class TypeReactiveFormComponent {
     //     password: new FormControl('', { nonNullable: true }),
     // });
     fb = new FormBuilder();
-
+    email = new FormControl('rama@gm.com')
     login = this.fb.nonNullable.group({
         email: [''],
         password: [''],
     });
     removeContol() {}
+    resetForm(){ 
+
+    }
 }

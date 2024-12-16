@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { TypeReactiveFormComponent } from "./type-reactive-form/type-reactive-form.component";
+import { TempDrivenComponent } from "./temp-driven/temp-driven.component";
 
 @Component({
     selector: 'app-root',
@@ -16,7 +17,8 @@ import { TypeReactiveFormComponent } from "./type-reactive-form/type-reactive-fo
     AsyncPipe,
     ReactiveFormsModule,
     ReactiveFormComponent,
-    TypeReactiveFormComponent
+    TypeReactiveFormComponent,
+    TempDrivenComponent
 ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
