@@ -1,10 +1,14 @@
 import { Component, inject } from '@angular/core';
 import {
+    AbstractControl,
     FormArray,
     FormBuilder,
     FormControl,
     FormGroup,
     ReactiveFormsModule,
+    Validator,
+    ValidatorFn,
+    Validators,
 } from '@angular/forms';
 
 @Component({
@@ -18,7 +22,7 @@ export class ReactiveFormComponent {
     formBuilder = inject(FormBuilder);
 
     userForm = this.formBuilder.group({
-        name: [''],
+        name: ['',[Validators.required,this.forbiddenNameValidator(/bob/i)]],
         age: [''],
         address: this.formBuilder.group({
             village: [''],
@@ -37,5 +41,15 @@ export class ReactiveFormComponent {
 
     addAliases() { 
         this.aliases.push(this.formBuilder.control(''))
+    }
+
+    forbiddenNameValidator(nameRegexp:RegExp) :ValidatorFn{ 
+        return (control: AbstractControl) => { 
+            if (nameRegexp.test(control.value)) {
+                return { forbiddenName: { value: control.value } };
+            } else { 
+                return null;
+            }
+        }
     }
 }
