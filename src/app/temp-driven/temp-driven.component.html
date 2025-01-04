@@ -1,0 +1,15 @@
+<h1>
+    Template drivaen forms
+</h1>
+<form #userForm="ngForm" (ngSubmit)="onSubmit();userForm.reset()">
+    <input type="text" #name="ngModel" required [(ngModel)]="actor.name" appForbiddenName="social" placeholder="Enter name" name="name"/>
+    <select name="id" [(ngModel)]="actor.id" >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <div class="error-msg" [hidden]="name.valid">
+        Error message
+    </div>
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>

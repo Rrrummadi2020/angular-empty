@@ -1,0 +1,28 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    
+    <label for="name">Name</label>  
+    <input type="text" id="name" formControlName="name" id="name">
+    <label for="surname">Name</label>  
+    <input type="text" id="surname" formControlName="surname" id="surname">
+    
+    <label for="age">Age</label>
+    <input type="text" id="age" formControlName="age" id="">
+    
+    <div formGroupName="address">
+        <label for="village">Village</label>
+        <input type="text" formControlName="village" />
+    </div>
+    
+    <div formArrayName="aliases">
+        <button (click)="addAliases()">Add aliases</button>
+        @for (item of aliases.controls; track $index;let i=$index ) {
+            <label for="array{{i}}">fom{{i}}</label>
+            <input type="text" [formControlName]="i" id="array{{i}}" />
+        }
+
+    </div>
+    <span>{{userForm.get('name')?.valid}}</span>
+    <span>{{userForm.get('name')?.valid}}</span>
+    <span>{{userForm.valid}}</span>
+    <button type="submit">Reactiving form Submit</button>
+</form>
