@@ -2,6 +2,8 @@
     
     <label for="name">Name</label>  
     <input type="text" id="name" formControlName="name" id="name">
+    <label for="surname">Name</label>  
+    <input type="text" id="surname" formControlName="surname" id="surname">
     
     <label for="age">Age</label>
     <input type="text" id="age" formControlName="age" id="">
@@ -20,5 +22,7 @@
 
     </div>
     <span>{{userForm.get('name')?.valid}}</span>
-    <button type="submit">Submit</button>
+    <span>{{userForm.get('name')?.valid}}</span>
+    <span>{{userForm.valid}}</span>
+    <button type="submit">Reactiving form Submit</button>
 </form>

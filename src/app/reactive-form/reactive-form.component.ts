@@ -24,10 +24,13 @@ export class ReactiveFormComponent {
     userForm = this.formBuilder.group({
         name: ['',[Validators.required,this.forbiddenNameValidator(/bob/i)]],
         age: [''],
+        surname: [''],
         address: this.formBuilder.group({
             village: [''],
         }),
         aliases: this.formBuilder.array([this.formBuilder.control('')]),
+    }, {
+        validators:[unambiguousValidator]
     });
 
     get aliases() {
@@ -52,4 +55,9 @@ export class ReactiveFormComponent {
             }
         }
     }
+}
+export const unambiguousValidator: ValidatorFn = (control:AbstractControl) => { 
+    const name = control.get('name');
+    const surname = control.get('surname');
+    return name && surname && name.value === surname.value ? {unambiguousRole:true}: null;
 }
