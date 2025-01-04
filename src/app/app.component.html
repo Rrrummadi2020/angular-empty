@@ -1,4 +1,6 @@
+
 <h1>Hello, {{ title }}</h1>
+<app-header></app-header>
 
 @if (user$ | async; as user) {
     <p> {{user.title}}</p>
@@ -10,3 +12,6 @@
 <!-- <app-temp-driven></app-temp-driven> -->
 <app-reactive-form></app-reactive-form>
  <app-type-reactive-form></app-type-reactive-form>
+
+ <button (click)="getAuthStatus()"> Get status</button>
+ {{isLogin}}

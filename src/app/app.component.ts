@@ -9,6 +9,7 @@ import { TypeReactiveFormComponent } from './type-reactive-form/type-reactive-fo
 import { TempDrivenComponent } from './temp-driven/temp-driven.component';
 import { AuthService } from './auth.service';
 import { FakeAuthService } from './fake-auth.service';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
     selector: 'app-root',
@@ -19,14 +20,16 @@ import { FakeAuthService } from './fake-auth.service';
         ReactiveFormsModule,
         ReactiveFormComponent,
         TypeReactiveFormComponent,
+        HeaderComponent,
         TempDrivenComponent,
     ],
-    providers: [{ provide: AuthService, useClass: FakeAuthService }],
+    providers: [{ provide: AuthService, useClass: AuthService }],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
     title = 'ng-2024-12';
+    isLogin: boolean = false;
     user$: Observable<{ title: string }> = new Observable();
 
     userServce: UserService = inject(UserService);
@@ -34,6 +37,10 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.user$ = this.userServce.getUser();
+    }
+
+    getAuthStatus() {
+        this.isLogin = this.authService.isLogin;
     }
 
     name = new FormControl('rama');
