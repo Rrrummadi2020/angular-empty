@@ -25,9 +25,17 @@ const APP_CONFIG = Object.freeze({ port: 9090 });
         HeaderComponent,
         TempDrivenComponent,
     ],
-    providers: [{ provide: AuthService, useClass: AuthService }, {
-        provide: 'APP_CONFIG',useValue: APP_CONFIG
-    }],
+    providers: [
+        { provide: AuthService, useClass: AuthService },
+        { provide: 'APP_CONFIG', useValue: APP_CONFIG },
+        { provide: 'IS_TEST', useValue: true },
+        {
+            provide: FakeAuthService,
+            useFactory: (isTest: Boolean) =>
+                isTest ? new FakeAuthService() : new AuthService(),
+            deps: ['IS_TEST'],
+        },
+    ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
@@ -38,10 +46,10 @@ export class AppComponent implements OnInit {
 
     userServce: UserService = inject(UserService);
     authService: AuthService = inject(AuthService);
-    constructor(@Inject('APP_CONFIG') appConfig:any) { 
+    constructor(@Inject('APP_CONFIG') appConfig: any) {
         console.log(appConfig);
     }
-    
+
     ngOnInit(): void {
         this.user$ = this.userServce.getUser();
     }
