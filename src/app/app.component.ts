@@ -8,6 +8,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { TypeReactiveFormComponent } from './type-reactive-form/type-reactive-form.component';
 import { TempDrivenComponent } from './temp-driven/temp-driven.component';
 import { AuthService } from './auth.service';
+import { FakeAuthService } from './fake-auth.service';
 
 @Component({
     selector: 'app-root',
@@ -20,7 +21,7 @@ import { AuthService } from './auth.service';
         TypeReactiveFormComponent,
         TempDrivenComponent,
     ],
-    providers: [{ provide: AuthService, useClass: AuthService }],
+    providers: [{ provide: AuthService, useClass: FakeAuthService }],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
