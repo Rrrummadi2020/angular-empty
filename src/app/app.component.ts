@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from './user.service';
 import { AsyncPipe } from '@angular/common';
@@ -10,6 +10,8 @@ import { TempDrivenComponent } from './temp-driven/temp-driven.component';
 import { AuthService } from './auth.service';
 import { FakeAuthService } from './fake-auth.service';
 import { HeaderComponent } from './header/header.component';
+import { appConfig } from './app.config';
+const APP_CONFIG = Object.freeze({ port: 9090 });
 
 @Component({
     selector: 'app-root',
@@ -23,7 +25,9 @@ import { HeaderComponent } from './header/header.component';
         HeaderComponent,
         TempDrivenComponent,
     ],
-    providers: [{ provide: AuthService, useClass: AuthService }],
+    providers: [{ provide: AuthService, useClass: AuthService }, {
+        provide: 'APP_CONFIG',useValue: APP_CONFIG
+    }],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
@@ -34,7 +38,10 @@ export class AppComponent implements OnInit {
 
     userServce: UserService = inject(UserService);
     authService: AuthService = inject(AuthService);
-
+    constructor(@Inject('APP_CONFIG') appConfig:any) { 
+        console.log(appConfig);
+    }
+    
     ngOnInit(): void {
         this.user$ = this.userServce.getUser();
     }
