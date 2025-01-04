@@ -2,7 +2,7 @@
     Template drivaen forms
 </h1>
 <form #userForm="ngForm" (ngSubmit)="onSubmit();userForm.reset()">
-    <input type="text" #name="ngModel" required [(ngModel)]="actor.name" placeholder="Enter name" name="name"/>
+    <input type="text" #name="ngModel" required [(ngModel)]="actor.name" appForbiddenName="social" placeholder="Enter name" name="name"/>
     <select name="id" [(ngModel)]="actor.id" >
         <option value="1">1</option>
         <option value="2">2</option>
@@ -11,5 +11,5 @@
     <div class="error-msg" [hidden]="name.valid">
         Error message
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
 </form>

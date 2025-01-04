@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 import { FakeAuthService } from './fake-auth.service';
 import { HeaderComponent } from './header/header.component';
 import { appConfig } from './app.config';
+import { ForbiddenNameDirective } from './forbidden-name.directive';
 const APP_CONFIG = Object.freeze({ port: 9090 });
 
 @Component({
@@ -24,6 +25,7 @@ const APP_CONFIG = Object.freeze({ port: 9090 });
         TypeReactiveFormComponent,
         HeaderComponent,
         TempDrivenComponent,
+        ForbiddenNameDirective,
     ],
     providers: [
         { provide: AuthService, useClass: AuthService },

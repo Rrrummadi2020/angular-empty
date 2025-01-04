@@ -1,10 +1,11 @@
 import { Component, ViewChild, viewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ForbiddenNameDirective } from '../forbidden-name.directive';
 
 @Component({
     selector: 'app-temp-driven',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule,ForbiddenNameDirective],
     templateUrl: './temp-driven.component.html',
     styleUrl: './temp-driven.component.scss',
 })
